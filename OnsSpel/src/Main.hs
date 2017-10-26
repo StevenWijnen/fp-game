@@ -1,18 +1,16 @@
+module Main where
 
--- | Display "Hello World" in a window.
---
-import Graphics.Gloss
+import Controller
+import Model
+import View
 
-main
- = display
-        (InWindow
-               "Hello World"     -- window title
-                (400, 150)       -- window size
-                (10, 10))        -- window position
-        white                    -- background color
-        picture                  -- picture to display
+import Graphics.Gloss.Interface.IO.Game
 
-picture
-        = Translate (-170) (-20) -- shift the text to the middle of the window
-        $ Scale 0.5 0.5          -- display it half the original size
-        $ Text "Ruub is homo"     -- text to display
+main :: IO ()
+main = playIO (InWindow "Counter" (400, 400) (0, 0)) -- Or FullScreen
+              black            -- Background color
+              10               -- Frames per second
+              initialState     -- Initial state
+              view             -- View function
+              input            -- Event function
+              step             -- Step function
